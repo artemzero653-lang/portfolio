@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-разработка — сайты-визитки и лендинги за 1–2 дня</title>
+    <meta name="description" content="Создаю современные сайты-визитки и лендинги: адаптивные, быстрые, с формой заявки. Срок 1–2 дня.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232563eb'/><rect x='14' y='34' width='8' height='16' rx='2' fill='white'/><rect x='28' y='24' width='8' height='26' rx='2' fill='white'/><rect x='42' y='14' width='8' height='36' rx='2' fill='white'/></svg>">
+    <style>
+        :root {
+            --bg: #f6f8fc;
+            --card: #fff;
+            --text: #0f1b33;
+            --muted: #5b6b85;
+            --accent: #2563eb;
+            --violet: #7c3aed;
+            --line: #e3e9f4;
+            --shadow: 0 12px 32px rgba(15, 27, 51, 0.06);
+            --shadow-lg: 0 24px 64px rgba(15, 27, 51, 0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        svg { display: block; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+        .hero { padding: 120px 0 72px; background: radial-gradient(720px 420px at 85% -10%, rgba(37,99,235,0.1), transparent 65%), radial-gradient(520px 380px at 0% 20%, rgba(124,58,237,0.07), transparent 60%); }
+        .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(37,99,235,0.08); color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 16px; }
+        .grad { background: linear-gradient(90deg, var(--accent), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 760px; }
+        .hero p { color: var(--muted); font-size: 18px; max-width: 560px; margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 15px 30px; border-radius: 14px; font-weight: 600; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--violet)); color: #fff; box-shadow: 0 10px 26px rgba(37,99,235,0.28); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(37,99,235,0.38); }
+        .features { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 34px; color: var(--muted); font-size: 14px; list-style: none; }
+        .features li { display: flex; align-items: center; gap: 8px; }
+        .features li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: rgba(22,163,74,0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12l5 5L20 7'/%3E%3C/svg%3E") center/10px no-repeat; }
+
+        .section { padding: 88px 0; }
+        .section-head { max-width: 640px; margin-bottom: 48px; }
+        h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+        .section-head p { color: var(--muted); font-size: 17px; }
+
+        .works { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .work { background: var(--card); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+        .work:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .preview { height: 220px; position: relative; overflow: hidden; display: grid; place-items: center; }
+        .preview-dark { background: radial-gradient(420px 260px at 70% 20%, rgba(255,122,26,0.16), transparent 65%), #0b0d12; }
+        .preview-light { background: radial-gradient(420px 260px at 75% 0%, rgba(37,99,235,0.14), transparent 65%), #eef2f9; }
+        .browser { width: 82%; background: #fff; border-radius: 12px 12px 0 0; box-shadow: 0 24px 48px rgba(0,0,0,0.25); overflow: hidden; }
+        .browser-dark { background: #151924; }
+        .browser-bar { display: flex; gap: 5px; padding: 8px 10px; background: rgba(15,27,51,0.08); }
+        .browser-dark .browser-bar { background: rgba(255,255,255,0.06); }
+        .browser-bar span { width: 8px; height: 8px; border-radius: 50%; background: rgba(15,27,51,0.2); }
+        .browser-dark .browser-bar span { background: rgba(255,255,255,0.18); }
+        .mock { padding: 14px; display: grid; gap: 8px; }
+        .mock-row { display: flex; gap: 8px; }
+        .block { border-radius: 6px; }
+        .w60 { width: 60%; height: 10px; }
+        .w40 { width: 40%; height: 10px; }
+        .w100 { width: 100%; height: 10px; }
+        .h70 { height: 70px; }
+        .blue { background: linear-gradient(90deg, #2563eb, #7c3aed); opacity: 0.85; }
+        .orange { background: linear-gradient(90deg, #ff7a1a, #ffb700); opacity: 0.85; }
+        .gray { background: rgba(15,27,51,0.1); }
+        .browser-dark .gray { background: rgba(255,255,255,0.1); }
+        .body { padding: 26px 26px 30px; }
+        .work-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+        .chip { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+        .work h3 { font-size: 20px; margin-bottom: 8px; }
+        .work .body > p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+        .work-list { list-style: none; display: grid; gap: 8px; margin-bottom: 18px; }
+        .work-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; }
+        .work-list li::before { content: ""; width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; border-radius: 50%; background: rgba(37,99,235,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12l5 5L20 7'/%3E%3C/svg%3E") center/10px no-repeat; }
+
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .step { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px 22px; box-shadow: var(--shadow); }
+        .step-num { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--violet)); color: #fff; font-weight: 700; margin-bottom: 14px; }
+        .step h3 { font-size: 16px; margin-bottom: 6px; }
+        .step p { color: var(--muted); font-size: 14px; }
+
+        .cta { padding: 88px 0; background: radial-gradient(700px 440px at 15% 0%, rgba(124,58,237,0.22), transparent 60%), linear-gradient(135deg, #101c36, #1a2c52); }
+        .cta-box { text-align: center; }
+        .cta h2 { color: #fff; max-width: 640px; margin: 0 auto 14px; }
+        .cta p { color: rgba(255,255,255,0.72); font-size: 17px; max-width: 520px; margin: 0 auto 30px; }
+
+        footer { background: #101a2e; color: rgba(255,255,255,0.6); padding: 26px 0; font-size: 14px; text-align: center; }
+
+        @media (max-width: 840px) {
+            .works { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr 1fr; }
+            .hero { padding: 96px 0 56px; }
+        }
+        @media (max-width: 540px) {
+            .steps { grid-template-columns: 1fr; }
+            .section { padding: 64px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container">
+        <span class="tag">Веб-разработка</span>
+        <h1>Сайты-визитки и лендинги, которые <span class="grad">работают на вас</span></h1>
+        <p>Современный дизайн без конструкторов, адаптив под все устройства, форма заявки на почту или в Telegram. Срок — 1–2 дня.</p>
+        <a class="btn btn-primary" href="https://kwork.ru/user/artem_vorobyev" id="cta-link">Заказать сайт</a>
+        <ul class="features">
+            <li>Чистый код и быстрая загрузка</li>
+            <li>Превью до оплаты</li>
+            <li>Правки в рамках пакета</li>
+            <li>Помогу с доменом и хостингом</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="tag">Портфолио</span>
+            <h2>Примеры работ</h2>
+            <p>Каждый сайт — это живая страница: адаптивная, с анимациями и формой заявки. Полные версии пришлю по запросу.</p>
+        </div>
+        <div class="works">
+            <article class="work">
+                <div class="preview preview-dark">
+                    <div class="browser browser-dark">
+                        <div class="browser-bar"><span></span><span></span><span></span></div>
+                        <div class="mock">
+                            <div class="mock-row"><div class="block orange w60"></div><div class="block gray w40"></div></div>
+                            <div class="mock-row"><div class="block gray" style="width:100%;height:44px;"></div></div>
+                            <div class="mock-row"><div class="block gray w40"></div><div class="block orange" style="width:25%;height:10px;border-radius:6px;"></div><div class="block gray" style="flex:1;height:10px;"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="work-meta">
+                        <span class="chip">Лендинг автосервиса</span>
+                        <span class="chip">Тёмная тема</span>
+                        <span class="chip">HTML/CSS/JS</span>
+                    </div>
+                    <h3>«АвтоМастер»</h3>
+                    <p>Продающий лендинг автосервиса: 8 услуг с ценами, отзывы, блок продажи сайта и форма заявки.</p>
+                    <ul class="work-list">
+                        <li>Анимированные счётчики и появление блоков</li>
+                        <li>SVG-иллюстрация и иконки услуг</li>
+                        <li>Мобильная версия с бургер-меню</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="work">
+                <div class="preview preview-light">
+                    <div class="browser">
+                        <div class="browser-bar"><span></span><span></span><span></span></div>
+                        <div class="mock">
+                            <div class="mock-row"><div class="block blue w60"></div><div class="block gray w40"></div></div>
+                            <div class="mock-row">
+                                <div class="block gray h70" style="width:34%;"></div>
+                                <div style="width:66%;display:grid;gap:8px;">
+                                    <div class="mock-row" style="height:31px;"><div class="block blue" style="width:48%;"></div><div class="block gray" style="width:48%;"></div></div>
+                                    <div class="mock-row" style="height:31px;"><div class="block gray" style="width:48%;"></div><div class="block blue" style="width:48%;"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="work-meta">
+                        <span class="chip">B2B-лендинг</span>
+                        <span class="chip">Дашборды и графики</span>
+                        <span class="chip">HTML/CSS/JS</span>
+                    </div>
+                    <h3>«ЦифроБизнес»</h3>
+                    <p>Главная страница компании по автоматизации: 11 блоков, мокап дашборда с графиками, FAQ-аккордеон.</p>
+                    <ul class="work-list">
+                        <li>Карточки услуг, кейсы с метриками</li>
+                        <li>Анимированные графики и счётчики</li>
+                        <li>Форма заявки и блок «Как мы работаем»</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0">
+    <div class="container">
+        <div class="section-head">
+            <span class="tag">Как заказать</span>
+            <h2>Четыре шага до готового сайта</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <span class="step-num">1</span>
+                <h3>Заявка</h3>
+                <p>Напишите сферу бизнеса и что должно быть на сайте.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <h3>Структура</h3>
+                <p>Согласуем блоки, тексты и стиль — в тот же день.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <h3>Превью</h3>
+                <p>Покажу ссылку на сайт. Смотрите на любом устройстве.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">4</span>
+                <h3>Сдача</h3>
+                <p>Правки и передача файлов или размещение на хостинге.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-box">
+        <h2>Нужен сайт, который приносит заявки?</h2>
+        <p>Напишите сегодня — послезавтра ваш сайт уже будет работать.</p>
+        <a class="btn btn-primary" href="https://kwork.ru/user/artem_vorobyev" id="cta-link2">Заказать за 1–2 дня</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">Портфолио веб-разработчика · Сайты-визитки и лендинги</div>
+</footer>
+
+</body>
+</html>
